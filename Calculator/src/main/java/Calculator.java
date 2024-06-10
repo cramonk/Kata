@@ -86,7 +86,7 @@ public class Calculator {
                 try {
                     Integer.parseInt(number);
                 } catch (NumberFormatException e) {
-                    System.out.println("Могут использоваться только арабские или римские цифры");
+                    System.out.println(number + " не является римской цифрой");
                     throw new Exception();
                 }
                 System.out.println("Одновременно может использоваться только одна система исчисления");
