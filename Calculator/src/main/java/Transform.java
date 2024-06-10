@@ -35,8 +35,7 @@ public class Transform {
         String romanFull = null;
         if (i <= 10) {
             if (i <= 0) {
-                System.out.println("Результат в римской системе исчисления не может быть меньше или равным 0");
-                throw new Exception();
+                throw new Exception("Результат в римской системе исчисления не может быть меньше или равным 0");
             } else {
                 romanFull = edinicy.get(i);
             }

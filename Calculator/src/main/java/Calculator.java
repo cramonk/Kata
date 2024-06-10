@@ -37,18 +37,11 @@ public class Calculator {
 
     private static void validate(String znaki) throws Exception {
         if (znaki.isEmpty()) {
-            System.out.println("Не является математической операцией");
-            throw new Exception();
+            throw new Exception("Не является математической операцией");
         }
 
         if (znaki.length() > 1) {
-            System.out.println("Может использоваться только 1 оператор");
-            throw new Exception();
-        }
-        char operation = znaki.charAt(0);
-        if ((operation != '+') && (operation != '-') && (operation != '*') && (operation != '/')) {
-            System.out.println("Могут использоваться только следующие операторы: +, -, *, /");
-            throw new Exception();
+            throw new Exception("Может использоваться только 1 оператор");
         }
     }
 
@@ -86,21 +79,17 @@ public class Calculator {
                 try {
                     Integer.parseInt(number);
                 } catch (NumberFormatException e) {
-                    System.out.println(number + " не является римской цифрой");
-                    throw new Exception();
+                    throw new Exception(number + " не является римской цифрой");
                 }
-                System.out.println("Одновременно может использоваться только одна система исчисления");
-                throw new Exception();
+                throw new Exception("Одновременно может использоваться только одна система исчисления");
             }
         }
-
         return n;
     }
 
     private static void validate(int n) throws Exception {
         if (n < 1 || n > 10) {
-            System.out.println("Могут использоваться только числа от 1 до 10");
-            throw new Exception();
+            throw new Exception("Могут использоваться только числа от 1 до 10");
         }
     }
 }
