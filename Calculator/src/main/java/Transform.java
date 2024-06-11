@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Transform {
+ class Transform {
     private static final Map<Integer, String> edinicy = new HashMap<>();
     private static final Map<Integer, String> decyatki = new HashMap<>();
 
@@ -29,7 +29,6 @@ public class Transform {
         decyatki.put(10, "C");
 
     }
-
 
     public static String transformToRoman(int i) throws Exception {
         String romanFull = null;

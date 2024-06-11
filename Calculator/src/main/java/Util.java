@@ -1,46 +1,31 @@
-public class Calculator {
-    private static boolean isRoman = false;
+class Util {
+    static boolean isRoman = false;
 
-    public static String calc(String input) throws Exception {
-        int result;
-        StringBuffer znaki = new StringBuffer();
-
+    public static String extractOperator(String input) throws Exception {
+        StringBuffer operators = new StringBuffer();
         char[] chars = input.toCharArray();
         for (char c : chars) {
             if ((c == '+') || (c == '-') || (c == '*') || (c == '/')) {
-                znaki.append(c);
+                operators.append(c);
             }
         }
-        validate(znaki.toString());
-
-        String[] temp = input.split("[+\\-*/]");
-
-
-        String firstNumber = temp[0];
-        String secondNumber = temp[1];
-
-        int[] numbers = validateNumbers(firstNumber, secondNumber);
-        int x = numbers[0];
-        int y = numbers[1];
-
-        switch (znaki.toString()) {
-            case "+" -> result = x + y;
-            case "-" -> result = x - y;
-            case "*" -> result = x * y;
-            case "/" -> result = x / y;
-            default -> throw new Exception();
-        }
-
-
-        return (isRoman) ? (Transform.transformToRoman(result)) : (String.valueOf(result));
+        validateOperators(operators);
+        return operators.toString();
     }
 
-    private static void validate(String znaki) throws Exception {
-        if (znaki.isEmpty()) {
+    public static int[] extractNumbers(String input) throws Exception {
+        String[] temp = input.split("[+\\-*/]");
+        String firstNumber = temp[0];
+        String secondNumber = temp[1];
+        return validateNumbers(firstNumber, secondNumber);
+    }
+
+    private static void validateOperators(StringBuffer operators) throws Exception {
+        if (operators.isEmpty()) {
             throw new Exception("Не является математической операцией");
         }
 
-        if (znaki.length() > 1) {
+        if (operators.length() > 1) {
             throw new Exception("Может использоваться только 1 оператор");
         }
     }
@@ -55,9 +40,8 @@ public class Calculator {
             numbers[1] = checkRomanNumber(number2);
             isRoman = true;
         }
-
-        validate(numbers[0]);
-        validate(numbers[1]);
+        validateNumber(numbers[0]);
+        validateNumber(numbers[1]);
 
         return numbers;
     }
@@ -87,7 +71,7 @@ public class Calculator {
         return n;
     }
 
-    private static void validate(int n) throws Exception {
+    private static void validateNumber(int n) throws Exception {
         if (n < 1 || n > 10) {
             throw new Exception("Могут использоваться только числа от 1 до 10");
         }
